@@ -1,0 +1,29 @@
+{
+  "name": "sakupdater",
+  "version": "1.0.0",
+  "description": "Sakura auto-updater, connected to github!",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/test.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivanbogaeb/sakupdater.git"
+  },
+  "keywords": [
+    "auto-updater",
+    "updater",
+    "github"
+  ],
+  "author": "Iván Bogdas Aebersold",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/ivanbogaeb/sakupdater/issues"
+  },
+  "homepage": "https://github.com/ivanbogaeb/sakupdater#readme",
+  "dependencies": {
+    "adm-zip": "^0.5.9",
+    "axios": "^0.27.2"
+  }
+}
