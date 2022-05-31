@@ -13,12 +13,11 @@ class Sakupdater {
 
         // Versioning
         this.currentVersion = '';
-        this.newVersion = '';
 
         // Functions
-        this.getLatestVersion = async () => {return await latest(this.gitUsername, this.gitRepository)};
-        this.downloadLatestVersion = async () => {return await download(this.gitUsername, this.gitRepository, this.privateToken)};
-        this.update = async () => {return await update()}
+        this.latest = async () => {return await latest(this.gitUsername, this.gitRepository, this.currentVersion)};
+        this.download = async () => {return await download(this.gitUsername, this.gitRepository, this.privateToken, this.newVersion)};
+        this.update = async () => {return await update()};
         // this.getCurrentVersion = async () => {await current()};
     };
 };

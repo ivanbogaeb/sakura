@@ -2,8 +2,6 @@ const fs = require('fs');
 const path = require('path');
 const axios = require('axios').default;
 
-process.env.PATH
-
 const download = async (gitUsername, gitRepository, privateToken) => {
     
     const url = `https://api.github.com/repos/${gitUsername}/${gitRepository}/releases/latest`;
