@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const axios = require('axios').default;
 
-const download = async (gitUsername, gitRepository, privateToken, installationDirectory, versionName) => {
+const download = async (privateToken, installationDirectory, versionName, downloadURL) => {
     if (installationDirectory == ''){
         throw new Error('You must introduce an installation directory in order to download a new version.');
     }
@@ -11,23 +11,21 @@ const download = async (gitUsername, gitRepository, privateToken, installationDi
     };
 
     return new Promise(async (resolve) => {
-        const url = `https://api.github.com/repos/${gitUsername}/${gitRepository}/releases/latest`;
-        let options = {
-            method: 'GET',
-            url: url,
-            responseType: 'json' // stream
-        };
         try {
-            const response = await axios(options);
+
+            let options = {
+                method: 'GET',
+                url: downloadURL,
+                responseType: 'stream' // stream
+            };
+
             if (privateToken.length > 1){
                 options.headers = {
                     Authorization: `token ${privateToken}`
                 };
             };
-            options.url = response.data.assets[0].browser_download_url;
-            options.responseType = 'stream';
-            const download = await axios(options);
 
+            const download = await axios(options);
             let downloadFolder = path.join(installationDirectory, './updates');
 
             if (!fs.existsSync(downloadFolder)) {
