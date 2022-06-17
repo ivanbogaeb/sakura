@@ -1,4 +1,4 @@
-<h1 align="center">sakupdater</h1>
+<h1 align="center">Sakura</h1>
 <p align="center">Sakura auto-updater, connected to github!</p>
 
 <hr>
