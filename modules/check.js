@@ -27,7 +27,7 @@ const check = async (windowMessenger, isElectron, messages, installationDirector
                     });
                     child.unref();
                     process.exit(0);
-                }); 
+                });
             };
             return true;
         };
