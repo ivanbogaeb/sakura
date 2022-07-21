@@ -12,7 +12,7 @@ const download = async (windowMessenger, isElectron, messages, downloadURL, priv
 
     return new Promise(async (resolve) => {
         try {
-            let data = await windowMessenger(isElectron, {type: 'message', payload: {type: 2, text: messages.downloading, loader: {active: false, data: 0, total: 0, percentage: 0}}});
+            let data = await windowMessenger(isElectron, {type: 'message', payload: {type: 1, text: messages.downloading, loader: {active: false, data: 0, total: 0, percentage: 0}}});
             if (data){
                 let options = {
                     method: 'GET',
@@ -31,7 +31,20 @@ const download = async (windowMessenger, isElectron, messages, downloadURL, priv
                 };
 
                 const download = await axios(options);
-                let downloadFolder = path.join(installationDirectory, './updates');
+                let downloadFolder = '';
+                if (isElectron){
+                    let currentDir = installationDirectory.split(path.sep);
+                    let isASAR = currentDir.find((element) => {
+                        if (element.includes('app.asar')){
+                            return true;
+                        };
+                    });
+                    if (isASAR){
+                        downloadFolder = path.join(installationDirectory, '../updates');
+                    } else {
+                        downloadFolder = path.join(installationDirectory, './updates');
+                    }
+                };
 
                 if (!fs.existsSync(downloadFolder)) {
                     fs.mkdirSync(downloadFolder);
@@ -39,7 +52,7 @@ const download = async (windowMessenger, isElectron, messages, downloadURL, priv
 
                 const w = download.data.pipe(fs.createWriteStream(path.join(downloadFolder, `${versionName}.zip`)));
                 let interval = setInterval(() => {
-                    windowMessenger(isElectron, {type: 'message', payload: {type: 2, text: messages.downloading, loader: {active: true, data: w.bytesWritten, total: download.headers['content-length'], percentage: 0}}});
+                    windowMessenger(isElectron, {type: 'message', payload: {type: 1, text: messages.downloading, loader: {active: true, data: w.bytesWritten, total: download.headers['content-length'], percentage: 0}}});
                 }, 100);
                 await w.on('finish', () => {
                     clearInterval(interval);

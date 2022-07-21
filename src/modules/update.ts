@@ -10,7 +10,7 @@ const update = async (windowMessenger, isElectron, messages, installationDirecto
         throw new Error('You need to fetch the latest version information first in order to request an update.');
     };
     try {
-        let data = await windowMessenger(isElectron, {type: 'message', payload: {type: 3, text: messages.updating, loader: {active: false, data: 0, total: 0, percentage: 0}}});
+        let data = await windowMessenger(isElectron, {type: 'message', payload: {type: 0, text: messages.updating, loader: {active: false, data: 0, total: 0, percentage: 0}}});
         if (data){
             const zipper = new AdmZip(path.join(installationDirectory, `/updates/${version}.zip`));
             if (!hasEXEFile){
@@ -19,13 +19,17 @@ const update = async (windowMessenger, isElectron, messages, installationDirecto
             } else {
                 let updateDir = path.join(installationDirectory, `/updates/${version}`);
                 zipper.extractAllTo(updateDir);
-                const newInstance = spawn(path.join(updateDir, `./${exeFile}`), {
-                    cwd: installationDirectory,
-                    detached: true,
-                    stdio: 'ignore',
-                });
-                newInstance.unref();
-                process.exit(0);
+                if (isElectron){
+                    const newInstance = spawn(path.join(updateDir, `./${exeFile}`), {
+                        cwd: installationDirectory,
+                        detached: true,
+                        stdio: 'ignore',
+                    });
+                    newInstance.unref();
+                    process.exit(0);
+                } else {
+                    return true;
+                }
             };
         };
     } catch (error){

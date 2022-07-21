@@ -26,7 +26,7 @@ const windowMessenger = async (isElectron, {type, payload}) => {
                 window = payload;
             };
             if (type == 'message'){
-                if (payload.type === 2){
+                if (payload.type){
                     payload.loader.percentage = ((Number(payload.loader.data * 100))/Number(payload.loader.total)).toFixed(2);
                 };
                 window.webContents.send('SakuraUpdater', payload);
