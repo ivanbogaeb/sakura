@@ -33,8 +33,6 @@ class Sakura implements ISakura {
         },
         currentVersion = ''
     }){
-
-
         const path = require('path');
         const { spawn } = require('child_process');
         const timer = require('./timer');
