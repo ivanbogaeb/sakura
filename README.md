@@ -1,5 +1,5 @@
 <br>
-<p align="center"><img align="center" alt="GitHub forks" height="200" src="./sakura-logo.png"></p>
+<p align="center"><img align="center" alt="GitHub forks" width="800" src="./sakura-logo.png"></p>
 <br>
 <h2 align="center">Bringing you an easy, simple, spring like fresh start on Electron and Node.JS updaters.</h2>
 <hr>
