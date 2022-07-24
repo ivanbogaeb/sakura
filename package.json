@@ -1,7 +1,7 @@
 {
   "name": "@ivanbogaeb/sakura",
   "version": "1.0.0",
-  "description": "Sakura auto-updater, connected to github!",
+  "description": "Sakura is a minimal Electron and Node.JS auto-updater, offering developers high flexibility and modularity.",
   "main": "./dist/index.js",
   "scripts": {
     "watch": "tsc -w",
