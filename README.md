@@ -29,7 +29,7 @@ Sakura is a minimal Electron and Node.JS auto-updater, offering developers high 
 <br>
 
 ## To-do:
-- [ ] Linux and iOS support.
+- [ ] Linux and iOS full support.
 - [ ] Relaunch command on Node.JS apps.
     *(Currently Node.JS apps cannot execute themselves once updated)*
 
@@ -37,7 +37,7 @@ Sakura is a minimal Electron and Node.JS auto-updater, offering developers high 
 
 ## Installation:
 
-```console
+```powershell
 npm install @ivanbogaeb/sakura
 ```
 
@@ -91,7 +91,6 @@ const updated = async () => {
 if (updated){
     // LOAD MAIN APP
 };
-
 ```
 
 <br>
@@ -101,14 +100,14 @@ if (updated){
 - [Import](#import)
 - [Settings](#settings)
 - [Functions](#functions)
-    - [Ready()](#ready)
+    - [Ready()](#ready-recommended)
     - [Check()](#check)
     - [Latest()](#latest)
     - [Download()](#download)
     - [Update()](#update)
-    - [Splash()](#splash)
-    - [Close()](#close)
-    - [Messenger()](#messenger)
+    - [Splash()](#splash-electron-only)
+    - [Close()](#close-electron-only)
+    - [Messenger()](#messenger-electron-only-not-recommended-to-use)
 - [Splash screen](#splash-screen)
 
 ### Import
@@ -283,14 +282,20 @@ Sakura communicates straight to the splash screen using [webContents](https://ww
         height: 250,
         center: true,
         webPreferences: {
-            webSecurity: true,
-            contextIsolation: true,
-            preload: path.join(app.getAppPath(), './render/scripts/updater.js')
+            webSecurity: true, // Always true
+            contextIsolation: true, // Always isolate your Window from the rest
+            preload: path.join(app.getAppPath(), './render/scripts/updater.js') // Preload your main JS file with required modules
         },
         icon: path.join(__dirname, '../favicon.ico')
     };
     ```
 - Create a splash screen executing [Splash()](#splash-electron-only).
+
+<br>
+
+## Security notes:
+
+The main reason why Sakura runs only throught [webContents](https://www.electronjs.org/es/docs/latest/api/web-contents) is to prevent malicious code injection, malicious activity, bugs or even poor performance or communication between the splash screen and Sakura. It has been noted that allowing Node modules to be executed inside a Window in Electron is not a good practice, and I took it seriously while developing this module.
 
 <br>
 
