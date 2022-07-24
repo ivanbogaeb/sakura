@@ -1,5 +1,5 @@
 {
-  "name": "sakupdater",
+  "name": "@ivanbogaeb/sakura",
   "version": "1.0.0",
   "description": "Sakura auto-updater, connected to github!",
   "main": "./dist/index.js",
