@@ -1,4 +1,4 @@
-# 0.9.0 / 20-07-2022
+# 1.0.0 / 24-07-2022
 
 First release, nothing fancy!
 
