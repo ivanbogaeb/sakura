@@ -1,6 +1,6 @@
 {
   "name": "@ivanbogaeb/sakura",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Sakura is a minimal Electron and Node.JS auto-updater, offering developers high flexibility and modularity.",
   "main": "./dist/sakura.js",
   "scripts": {
@@ -32,11 +32,11 @@
   "dependencies": {
     "adm-zip": "^0.5.9",
     "axios": "^0.27.2",
-    "mv": "^2.1.1",
-    "typescript": "^4.7.4"
+    "mv": "^2.1.1"
   },
   "devDependencies": {
     "@types/node": "^18.0.6",
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "typescript": "^4.7.4"
   }
 }
