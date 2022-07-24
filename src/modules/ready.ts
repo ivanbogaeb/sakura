@@ -1,5 +1,5 @@
-const { compare } = require("compare-versions");
-const ready = async (windowProperties, HTMLFile, splash, check, latest, download, update, close, currentVersion) => {
+
+const ready = async (compare:any, windowProperties:any , HTMLFile:string, splash:any, check:any, latest:any, download:any, update:any, close:any, currentVersion:any) => {
     let ready = await splash(windowProperties, HTMLFile);
     if (ready){
         let mainVersion = await check();

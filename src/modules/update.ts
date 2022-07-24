@@ -1,8 +1,4 @@
-const path = require('path');
-const AdmZip = require('adm-zip');
-const { spawn } = require('child_process');
-
-const update = async (windowMessenger, isElectron, messages, installationDirectory, version, hasEXEFile, exeFile) => {
+const update = async (path:any, AdmZip:any, spawn:any, windowMessenger:any, isElectron:boolean, messages:any, installationDirectory:string, version:string, hasEXEFile:boolean, exeFile:string) => {
     if (installationDirectory == ''){
         throw new Error('You must introduce an installation directory in order to update your version.');
     };
@@ -32,7 +28,7 @@ const update = async (windowMessenger, isElectron, messages, installationDirecto
                 }
             };
         };
-    } catch (error){
+    } catch (error:any){
         console.log(error);
         throw new Error(error);
     };

@@ -1,15 +1,15 @@
 const {BrowserWindow} = require('electron');
 
-let window = '';
+let sakuraWindow:any = {};
 
-const windowCreator = async (isElectron, properties, HTMLFile) => {
+const windowCreator = async (isElectron:boolean, properties:any, HTMLFile:string) => {
     return new Promise(async (resolve) => {
         if (isElectron){
-            window = new BrowserWindow(properties);
-            window.removeMenu();
-            window.loadFile(HTMLFile);
-            window.webContents.on('did-finish-load', async () => {
-                let ready = await windowMessenger(isElectron, {type: 'activate', payload: window});
+            sakuraWindow = new BrowserWindow(properties);
+            sakuraWindow.removeMenu();
+            sakuraWindow.loadFile(HTMLFile);
+            sakuraWindow.webContents.on('did-finish-load', async () => {
+                let ready = await windowMessenger(isElectron, {type: 'activate', payload: sakuraWindow});
                 if (ready){
                     resolve(true);
                 };
@@ -19,26 +19,26 @@ const windowCreator = async (isElectron, properties, HTMLFile) => {
     });
 };
 
-const windowMessenger = async (isElectron, {type, payload}) => {
+const windowMessenger = async (isElectron:boolean, {type, payload}:any) => {
     return new Promise((resolve) => {
         if (isElectron){
             if (type == 'activate'){
-                window = payload;
+                sakuraWindow = payload;
             };
             if (type == 'message'){
                 if (payload.type){
                     payload.loader.percentage = ((Number(payload.loader.data * 100))/Number(payload.loader.total)).toFixed(2);
                 };
-                window.webContents.send('SakuraUpdater', payload);
+                sakuraWindow.webContents.send('SakuraUpdater', payload);
             };
         }
         resolve(true);
     });
 };
 
-const windowClose = (isElectron) => {
+const windowClose = (isElectron:boolean) => {
     if (isElectron){
-        window.close();
+        sakuraWindow.close();
     };
 };
 

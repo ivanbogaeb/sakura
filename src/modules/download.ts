@@ -1,8 +1,4 @@
-const fs = require('fs');
-const path = require('path');
-const axios = require('axios').default;
-
-const download = async (windowMessenger, isElectron, messages, downloadURL, privateToken, installationDirectory, versionName) => {
+const download = async (fs:any, path:any, axios:any, windowMessenger:any, isElectron:boolean, messages:any, downloadURL:string, privateToken:string, installationDirectory:string, versionName:string) => {
     if (installationDirectory == ''){
         throw new Error('You must introduce an installation directory in order to download a new version.');
     }
@@ -14,7 +10,7 @@ const download = async (windowMessenger, isElectron, messages, downloadURL, priv
         try {
             let data = await windowMessenger(isElectron, {type: 'message', payload: {type: 1, text: messages.downloading, loader: {active: false, data: 0, total: 0, percentage: 0}}});
             if (data){
-                let options = {
+                let options:any = {
                     method: 'GET',
                     url: downloadURL,
                     responseType: 'stream',
@@ -59,7 +55,7 @@ const download = async (windowMessenger, isElectron, messages, downloadURL, priv
                     resolve(true);
                 });
             };
-        } catch (error){
+        } catch (error:any){
             console.log(error);
             throw new Error(error);
         };

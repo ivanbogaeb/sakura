@@ -1,3 +1,3 @@
-const timer = ms => new Promise(resolve => setTimeout(resolve, ms));
+const timer = (ms: number | undefined) => new Promise(resolve => setTimeout(resolve, ms));
 
 module.exports = timer;
