@@ -252,7 +252,7 @@ class Sakura implements ISakura {
         const { compare } = require("compare-versions");
         
         // Imports
-        const timer = require('./timer');
+        const timer = require('./modules/timer');
         const check = require('./modules/check'); // Update checker, if we are running an update, it will instantly replace the old app with the new version.
         const ready = require('./modules/ready'); // Automatic update check, installation and run.
         const latest = require('./modules/latest'); // Get latest version available.
