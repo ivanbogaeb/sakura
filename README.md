@@ -4,10 +4,10 @@
 <h2 align="center">Bringing you an easy, simple, spring like fresh start on Electron and Node.JS updaters.</h2>
 <hr>
 <p align="center">
-<a href="https://github.com/ivanbogaeb/sakura/network"><img alt="GitHub forks" src="https://img.shields.io/github/forks/ivanbogaeb/sakura"></a>
-<a href="https://github.com/ivanbogaeb/sakura/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/ivanbogaeb/sakura"></a>
-<a href="https://github.com/ivanbogaeb/sakura/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/ivanbogaeb/sakura"></a>
-<a href="https://github.com/ivanbogaeb/sakura/blob/main/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/ivanbogaeb/sakura"></a>
+<a href="https://github.com/ivanbogaeb/sakura/network"><img alt="GitHub forks" src="https://img.shields.io/github/forks/ivanbogaeb/sakura?style=flat-square"></a>
+<a href="https://github.com/ivanbogaeb/sakura/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/ivanbogaeb/sakura?style=flat-square"></a>
+<a href="https://github.com/ivanbogaeb/sakura/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/ivanbogaeb/sakura?style=flat-square"></a>
+<a href="https://github.com/ivanbogaeb/sakura/blob/main/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/ivanbogaeb/sakura?style=flat-square"></a>
 </p>
 
 <br>
