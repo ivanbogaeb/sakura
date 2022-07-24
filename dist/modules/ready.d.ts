@@ -1,0 +1,1 @@
+declare const ready: (compare: any, windowProperties: any, HTMLFile: string, splash: any, check: any, latest: any, download: any, update: any, close: any, currentVersion: any) => Promise<true | undefined>;

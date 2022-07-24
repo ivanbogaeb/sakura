@@ -1,0 +1,1 @@
+declare const download: (fs: any, path: any, axios: any, windowMessenger: any, isElectron: boolean, messages: any, downloadURL: string, privateToken: string, installationDirectory: string, versionName: string) => Promise<unknown>;

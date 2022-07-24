@@ -1,0 +1,1 @@
+declare const update: (path: any, AdmZip: any, spawn: any, windowMessenger: any, isElectron: boolean, messages: any, installationDirectory: string, version: string, hasEXEFile: boolean, exeFile: string) => Promise<true | undefined>;
