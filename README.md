@@ -300,7 +300,7 @@ The main reason why Sakura runs only throught [webContents](https://www.electron
 <br>
 
 ## Changelog:
-- 20 July 2022 - First "Release" - Version 0.9.0
+- 22 July 2022 - First "Release" - Version 1.0.0
 - **[Read more...](./CHANGELOG.md)**
 
 <br>
