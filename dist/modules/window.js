@@ -19,6 +19,7 @@ const windowCreator = (isElectron, properties, HTMLFile) => __awaiter(void 0, vo
             sakuraWindow.webContents.on('did-finish-load', () => __awaiter(void 0, void 0, void 0, function* () {
                 let ready = yield windowMessenger(isElectron, { type: 'activate', payload: sakuraWindow });
                 if (ready) {
+                    console.log("update screen");
                     resolve(true);
                 }
                 ;
@@ -43,11 +44,13 @@ const windowMessenger = (isElectron, { type, payload }) => __awaiter(void 0, voi
             }
             ;
         }
+        console.log("update screen message", payload);
         resolve(true);
     });
 });
 const windowClose = (isElectron) => {
     if (isElectron) {
+        console.log("update screen closing");
         sakuraWindow.close();
     }
     ;
