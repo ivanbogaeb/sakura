@@ -4,7 +4,8 @@ const ready = async (compare:any, windowProperties:any , HTMLFile:string, splash
     if (ready){
         let mainVersion = await check();
         if (mainVersion){
-            let latestVersion = Object.create(await latest());
+            let latestVersion = Object.create(null);
+            latestVersion = await latest();
             if (!latestVersion.hasOwnProperty.call('error')){
                 if (compare(latestVersion, currentVersion, '>')){
                     let downloadLatestVersion = await download();
