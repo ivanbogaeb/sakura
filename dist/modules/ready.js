@@ -14,7 +14,7 @@ const ready = (compare, windowProperties, HTMLFile, splash, check, latest, downl
         let mainVersion = yield check();
         if (mainVersion) {
             let latestVersion = yield latest();
-            if (!latestVersion.hasOwnProperty('error')) {
+            if (!latestVersion.error) {
                 if (compare(latestVersion, currentVersion, '>')) {
                     let downloadLatestVersion = yield download();
                     if (downloadLatestVersion) {
