@@ -5,10 +5,12 @@ const ready = async (compare:any, windowProperties:any , HTMLFile:string, splash
         let mainVersion = await check();
         if (mainVersion){
             let latestVersion = await latest();
-            if (compare(latestVersion, currentVersion, '>')){
-                let downloadLatestVersion = await download();
-                if (downloadLatestVersion){
-                    await update();
+            if (!latestVersion.hasOwnProperty('error')){
+                if (compare(latestVersion, currentVersion, '>')){
+                    let downloadLatestVersion = await download();
+                    if (downloadLatestVersion){
+                        await update();
+                    };
                 };
             };
         };
