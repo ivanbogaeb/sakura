@@ -19,7 +19,7 @@ const check = async (path:any, spawn:any, timer:any, windowMessenger:any, isElec
                     mainDirectory = path.join(installationDirectory, '../../../../../../');
                 } else {
                     mainDirectory = path.join(installationDirectory, '../../');
-                }
+                };
                 let consoleCommand:any = '';
                 if (process.platform == 'win32'){
                     consoleCommand = spawn('cmd', ['/c', 'robocopy', `${path.join(installationDirectory, '../../')}`, `${mainDirectory}`, '/E', '/IS', '/IT', '/IM']);
