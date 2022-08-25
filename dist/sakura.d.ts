@@ -237,6 +237,7 @@ declare class Sakura implements ISakura {
             fetching: string;
             downloading: string;
             updating: string;
+            unableToUpdate: string;
         } | undefined;
         currentVersion?: string | undefined;
     });
