@@ -4,14 +4,11 @@ const ready = async (compare:any, windowProperties:any , HTMLFile:string, splash
     if (ready){
         let mainVersion = await check();
         if (mainVersion){
-            let latestVersion = Object.create(null);
-            latestVersion = await latest();
-            if (!latestVersion.hasOwnProperty.call('error')){
-                if (compare(latestVersion, currentVersion, '>')){
-                    let downloadLatestVersion = await download();
-                    if (downloadLatestVersion){
-                        await update();
-                    };
+            let latestVersion:any = await latest();
+            if (compare(latestVersion, currentVersion, '>')){
+                let downloadLatestVersion = await download();
+                if (downloadLatestVersion){
+                    await update();
                 };
             };
         };

@@ -138,7 +138,8 @@ let sakura = new Sakura({
         splash: 'Loading...', // Initial message
         fetching: 'Checking for updates...', // While looking for updates
         downloading: 'Downloading new update...', // When your app is downloading
-        updating: 'Updating...' // While it's updating
+        updating: 'Updating...', // While it's updating
+        unableToUpdate: 'Unable to update, skipping...' // While it's updating
     },
     currentVersion: require('./version.json'), // Load your current version from a file, variable or string!
 });

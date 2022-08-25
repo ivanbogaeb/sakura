@@ -15,17 +15,11 @@ const latest = async (axios:any, timer:any, windowMessenger:any, isElectron:bool
             };
             try {
                 const response = await axios(options);
-                try {
-                    return {tagname: response.data.tag_name, url: response.data.assets[0].url};
-                } catch {
-                    await windowMessenger(isElectron, {type: 'message', payload: {type: 1, text: "This repository must be private or doesn't exist, please check it's privileges", loader: {active: false, data: 0, total: 0, percentage: 0}}});
-                    await timer(2000);
-                    return {error: "This repository must be private or doesn't exist, please check it's privileges.", code: 404};
-                };
+                return {tagname: response.data.tag_name, url: response.data.assets[0].url};
             } catch (error){
-                await windowMessenger(isElectron, {type: 'message', payload: {type: 1, text: "Unable to communicate with updating service", loader: {active: false, data: 0, total: 0, percentage: 0}}});
-                await timer(2000);
-                return {error: "Unable to communicate with updating service, skipping update check...", code: 12002};
+                await windowMessenger(isElectron, {type: 'message', payload: {type: 1, text: messages.unableToUpdate, loader: {active: false, data: 0, total: 0, percentage: 0}}});
+                await timer(5000);
+                return {error: "Unable to communicate with Github, skipping update...", code: 12002};
             };
         };
     } catch (error:any){
