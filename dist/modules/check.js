@@ -30,6 +30,7 @@ const check = (path, spawn, timer, windowMessenger, isElectron, messages, instal
                 else {
                     mainDirectory = path.join(installationDirectory, '../../');
                 }
+                ;
                 let consoleCommand = '';
                 if (process.platform == 'win32') {
                     consoleCommand = spawn('cmd', ['/c', 'robocopy', `${path.join(installationDirectory, '../../')}`, `${mainDirectory}`, '/E', '/IS', '/IT', '/IM']);

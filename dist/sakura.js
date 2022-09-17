@@ -63,7 +63,8 @@ class Sakura {
         splash: 'Loading...',
         fetching: 'Checking for updates...',
         downloading: 'Downloading new update...',
-        updating: 'Updating...'
+        updating: 'Updating...',
+        unableToUpdate: 'Unable to update, skipping...'
     }, currentVersion = '' }) {
         const fs = require('fs');
         const path = require('path');
@@ -98,10 +99,15 @@ class Sakura {
             return yield check(path, spawn, timer, windowMessenger, this.isElectron, this.messages, this.installationDirectory, this.executableName);
         });
         this.latest = () => __awaiter(this, void 0, void 0, function* () {
-            let { tagname, url } = yield latest(axios, timer, windowMessenger, this.isElectron, this.messages, this.gitUsername, this.gitRepository, this.privateToken);
-            newVersion = tagname;
-            downloadURL = url;
-            return tagname;
+            let data = yield latest(axios, timer, windowMessenger, this.isElectron, this.messages, this.gitUsername, this.gitRepository, this.privateToken);
+            if (data.hasOwnProperty('tagname')) {
+                newVersion = data.tagname;
+                downloadURL = data.url;
+                return data.tagname;
+            }
+            else {
+                return currentVersion;
+            }
         });
         this.download = () => __awaiter(this, void 0, void 0, function* () {
             return yield download(fs, path, axios, windowMessenger, this.isElectron, this.messages, downloadURL, this.privateToken, this.installationDirectory, newVersion);

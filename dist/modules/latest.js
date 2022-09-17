@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 const latest = (axios, timer, windowMessenger, isElectron, messages, gitUsername, gitRepository, privateToken) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let data = yield windowMessenger(isElectron, { type: 'message', payload: { type: 1, text: messages.fetching, loader: { active: false, data: 0, total: 0, percentage: 0 } } });
-        yield timer(1000);
+        yield timer(2000);
         if (data) {
             let options = {
                 method: 'GET',
@@ -24,8 +24,16 @@ const latest = (axios, timer, windowMessenger, isElectron, messages, gitUsername
                 };
             }
             ;
-            const response = yield axios(options);
-            return { tagname: response.data.tag_name, url: response.data.assets[0].url };
+            try {
+                const response = yield axios(options);
+                return { tagname: response.data.tag_name, url: response.data.assets[0].url };
+            }
+            catch (error) {
+                yield windowMessenger(isElectron, { type: 'message', payload: { type: 1, text: messages.unableToUpdate, loader: { active: false, data: 0, total: 0, percentage: 0 } } });
+                yield timer(5000);
+                return { error: "Unable to communicate with Github, skipping update...", code: 12002 };
+            }
+            ;
         }
         ;
     }

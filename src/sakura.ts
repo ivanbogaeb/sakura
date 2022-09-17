@@ -240,7 +240,8 @@ class Sakura implements ISakura {
             splash: 'Loading...',
             fetching: 'Checking for updates...',
             downloading: 'Downloading new update...',
-            updating: 'Updating...'
+            updating: 'Updating...',
+            unableToUpdate: 'Unable to update, skipping...'
         },
         currentVersion = ''
     }){
@@ -282,10 +283,14 @@ class Sakura implements ISakura {
             return await check(path, spawn, timer, windowMessenger, this.isElectron, this.messages, this.installationDirectory, this.executableName);
         };
         this.latest = async () => {
-            let {tagname, url} = await latest(axios, timer, windowMessenger, this.isElectron, this.messages, this.gitUsername, this.gitRepository, this.privateToken);
-            newVersion = tagname;
-            downloadURL = url;
-            return tagname;
+            let data:any = await latest(axios, timer, windowMessenger, this.isElectron, this.messages, this.gitUsername, this.gitRepository, this.privateToken);
+            if (data.hasOwnProperty('tagname')){
+                newVersion = data.tagname;
+                downloadURL = data.url;
+                return data.tagname;
+            } else {
+                return currentVersion;
+            }
         };
         this.download = async () => {
             return await download(fs, path, axios, windowMessenger, this.isElectron, this.messages, downloadURL, this.privateToken, this.installationDirectory, newVersion);
